@@ -1,3 +1,3 @@
 # mitsumori
 
-##VUE-MITSUMORI
+## VUE-MITSUMORI
