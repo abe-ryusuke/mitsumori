@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Vue.js App</title>
+</head>
+<body>
+<div id="app">
+
+<table>
+<thead>
+<tr>
+<th>商品</th>
+<th>価格</th>
+<th>個数</th>
+<th>小計</th>
+<th>削除</th>
+</tr>
+</thead>
+<tr v-for="menu in menuList" v-bind:key="menu.id">
+<td>
+<select v-model="menu.selectedMenuValue" @change="onChangeMenu(menu)">
+<option disabled value="">選択してください。</option>
+<option v-for="list in menu.lists" :value="list.value">{{ list.name }}</option>
+</select>
+</td>
+<td>
+<input type="hidden" v-model="menu.selectedMenuName" readonly>
+<p>{{menu.selectedMenuValue}}</p>
+</td>
+<td>
+<input type="number" v-model="menu.number" min="1" max="100" ref="number" @change="onChangeMenu(menu)">
+</td>
+<td>
+<p>{{menu.price}}</p>
+</td>
+<td>
+<button v-on:click="doRemove(menu)">削除</button>
+</td>
+</tr>
+</table>
+<button v-on:click="doAdd">追加</button>
+
+
+<p>合計：<input type="text" v-model="goukei"></p>
+
+<textarea name="message" id="" cols="30" rows="10" v-model="message"></textarea>
+
+</div>
+  <!--<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="mitsumori.js"></script>
+
+<style>
+table {
+	border-top:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+	border-collapse:collapse;
+	border-spacing:0;
+	empty-cells:show;
+	margin: 0px 0px 40px 1px;
+	}
+	
+table > thead > tr > th,
+table > tbody > tr > th {
+	line-height: 160%;
+	vertical-align: middle;
+	text-align: left;
+	white-space: nowrap;
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	padding:20px 10px;
+	}
+
+table > thead > tr > td,
+table > tbody > tr > td {
+	line-height: 160%;
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	padding:20px 10px;
+	}
+
+</style>
+</body>
+</html>
